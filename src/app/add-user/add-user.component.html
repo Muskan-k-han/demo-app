@@ -1,0 +1,81 @@
+<form #myform=ngForm (ngSubmit)="myform.valid &&  addUser(myform)">
+
+    <div class="col-7">
+        <input type="text" name="name" placeholder="name" required minlength="3" ngModel #nameCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+     Name is required
+    </div>
+    
+    
+    <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.minlength" class="error">
+        minlength of name is 3
+       </div>
+    
+    
+       <div class="col-7">
+        <input type="text" name="description" placeholder="description" ngModel #descriptionCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="descriptionCtrl.errors!=null && descriptionCtrl.errors.required" class="error">
+     description is required
+    </div>
+
+    <div class="col-7">
+        <input type="datetime-local" name="startDate" placeholder="startDate" ngModel #dateCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
+     startDate is required
+    </div>
+
+    <div class="col-7">
+        <input type="datetime-local" name="endDate" placeholder="endDate" ngModel #dateCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
+     endDate is required
+    </div>
+
+    <div class="col-7">
+        <input type="text" name="status" placeholder="status"  ngModel #statusCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="statusCtrl.errors!=null && statusCtrl.errors.required" class="error">
+     status is required
+    </div>
+    
+    
+       <div style="position:absolute; left:60px; top:450px">
+    <input type="submit" value="Submit"  class="btn btn-primary">    
+    </div>
+    </form>
+        <br>
+        
+        <div class ="container" *ngIf="user!==undefined">
+         <h3>User Added </h3>   
+         <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+             
+                <td>{{user.userId}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.description}}</td>
+                <td>{{getDate(user.startDate)}}</td>
+                <td>{{getDate(user.endDate)}}</td>
+                <td>{{user.status}}</td>
+              </tr>
+            </tbody>
+              </table>
+        </div>

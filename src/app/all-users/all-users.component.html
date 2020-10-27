@@ -1,0 +1,27 @@
+
+<div class="container">
+    <table class="table" >
+      <thead class="thead-light" style="margin-top: 500px;">
+        <tr>
+        <th>UserId</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+        <th>Status</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.userId}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.description}}</td>
+          <td>{{getDate(user.startDate)}}</td>
+          <td>{{getDate(user.endDate)}}</td>
+          <td>{{user.status}}</td>
+          <td><button type="button" class="btn btn-large btn-warning" (click)=deleteUser(user.userId)>Delete</button></td>
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>

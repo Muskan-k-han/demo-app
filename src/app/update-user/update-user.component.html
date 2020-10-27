@@ -1,0 +1,92 @@
+
+<form #myform=ngForm (ngSubmit)="myform.valid &&  updateUser(myform)">
+
+    <div class="col-7">
+        <input type="number" name="userId" placeholder="userId" required minlength="1" ngModel #numberCtrl=ngModel class="form-control" >    
+    </div>
+    <div *ngIf="numberCtrl.errors!=null && numberCtrl.errors.required" class="error">
+        userId is required
+       </div>
+
+    <div class="col-7">
+        <input type="text" name="name" placeholder="name" required minlength="3" ngModel #nameCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+     name is required
+    </div>
+    
+    
+    <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.minlength" class="error">
+        minlength is 3
+       </div>
+    
+    <div class="col-7">
+        <input type="text" name="description" placeholder="description" required minlength="3" ngModel #descriptionCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="descriptionCtrl.errors!=null && descriptionCtrl.errors.required" class="error">
+     description is required
+    </div>
+    
+    
+    <div *ngIf="descriptionCtrl.errors!=null && descriptionCtrl.errors.minlength" class="error">
+        minlength is 3
+       </div>
+    
+       <div class="col-7">
+        <input type="datetime-local" name="startDate" placeholder="startDate" ngModel #dateCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
+     startDate is required
+    </div>
+
+    <div class="col-7">
+        <input type="datetime-local" name="endDate" placeholder="endDate" ngModel #dateCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
+     endDate is required
+    </div>
+
+    <div class="col-7">
+        <input type="text" name="status" placeholder="status"  ngModel #statusCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="statusCtrl.errors!=null && statusCtrl.errors.required" class="error">
+     status is required
+    </div>
+    
+
+       <div style="position:relative; margin-left: 10px; margin-top: 10px;">
+    <input type="submit" value="Submit"  class="btn btn-primary">    
+    </div>
+    </form>
+        <br>
+        
+        <div class ="container" *ngIf="user!==undefined">
+         <h3>User Details Updated </h3>   
+         <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">userId</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{user.userId}}</td>
+                <td>{{user.name}}</td>      
+                <td>{{user.description}}</td>
+                <td>{{getDate(user.startDate)}}</td>
+                <td>{{getDate(user.endDate)}}</td>
+                <td>{{user.status}}</td>
+              </tr>
+              </tbody>
+              </table>
+        </div>
